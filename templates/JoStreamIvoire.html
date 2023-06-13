@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+Foire aux films !
+{% endblock %}
+
+{% block content %} 
+
+<div class="row" style="margin-top:10px; margin-left:10px">
+    <div class="col-8">
+        <h2>Les 10 films les plus salués par la critique !</h2>
+        <p>Cliquer sur "Noter ce film pour choisir et noter un film"</p>
+        <br>
+       <table class="table table-hover table-dark">
+          <thead>
+             <tr>
+                <!-- Colonnes -->
+                <th scope="col">ID</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Note moyenne</th>
+                <th scope="col">Nbre de votes</th>
+                <th scope="col">Options</th>
+             </tr>
+          </thead>
+          <tbody>
+             {% for i in films.index.tolist() %}
+             <tr>
+                <td>{{ films.loc[i,"id"] }}</td>
+                <td>{{ films.loc[i,"titre"] }}</td>
+                <td>{{ films.loc[i,"vote_moyen"] }}/10</td>
+                <td>{{ films.loc[i,"nbre_votes"] }}  votes</td>
+                <td>
+                    <a href="{{ url_for('noter_film') }}" class="btn btn-outline btn-success">Noter ce film</a>
+                </td>
+             </tr>
+             {% endfor %}
+          </tbody>
+       </table>
+    </div>
+    
+    <div class="col-4">
+        <h2>Films votés</h2>
+        <p>Cliquez sur «retirer» pour retirer un film de votre liste de choix</p>
+        <br>
+        <table class="table table-hover table-dark">
+           <thead>
+              <tr>
+                 <!-- Colonnes -->
+                 <th scope="col">Titre</th>
+                 <th scope="col">Options</th>
+              </tr>
+           </thead>
+           <tbody>
+              {% for i in voted_films.index.tolist() %}
+              <tr>
+                 <td>{{ voted_films.loc[i,"titre"] }}</td>
+                 <td>
+                     <a href="{{ url_for('retirer_film', film=films.loc[i,'id']) }}" class="btn btn-outline btn-success">Retirer</a>
+                 </td>
+              </tr>
+              {% endfor %}
+           </tbody>
+        </table>
+   </div>
+ </div>
+ {% endblock %}
+

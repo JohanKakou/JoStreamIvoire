@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+    Connexion
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-signin" style="color:white">
+            {{ form.hidden_tag() }}
+            <img class="mb-4" src={{url_for('static', filename="JoStreamIvoire/Moi cv modifié.png")}} alt="Photo">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Connectez-vous ici !
+            </h1>
+            <br>
+            {{ form.nom_utilisateur.label() }}
+            {{ form.nom_utilisateur(class="form-control", placeholder="Nom d'Utilisateur") }}
+
+            {{ form.mdp.label() }}
+            {{ form.mdp(class="form-control", placeholder="Mot de passe") }}
+
+            <br>
+
+
+            <div class="checkbox mb-3">
+               <h6>je n'ai pas encore de compte</h6>
+               <a class="btn btn-sm btn-secondary" href="{{ url_for('register_page') }}">Créer un compte</a>
+            </div>
+
+            {{ form.soumettre(class="btn btn-lg btn-block btn-primary") }}
+
+        </form>
+    </div>
+</body>
+{% endblock %}

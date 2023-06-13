@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+     Page d'enregistrement
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            <img class="mb-4" src={{url_for('static', filename="JoStreamIvoire/Moi cv modifié.png")}} alt="">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Créez un compte ici
+            </h1>
+            <br>
+            {{ form.nom_utilisateur.label() }}
+            {{ form.nom_utilisateur(class="form-control", placeholder="Nom d'utilisateur") }}
+
+            {{ form.mail.label() }}
+            {{ form.mail(class="form-control", placeholder="Email") }}
+
+            {{ form.genre.label() }}
+            {{ form.genre(class="form-control", placeholder="genre") }}
+
+            {{ form.ville.label() }}
+            {{ form.ville(class="form-control", placeholder="Ville") }}
+
+            {{ form.password1.label() }}
+            {{ form.password1(class="form-control", placeholder="Mot de passe") }}
+
+            {{ form.password2.label() }}
+            {{ form.password2(class="form-control", placeholder="Confirmez le mot de passe") }}
+
+            <br>
+
+            <div class="checkbox mb-3">
+               <h6>Vous avez déjà un compte?</h6>
+               <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Connexion</a>
+            </div>
+
+            {{ form.soumettre(class="btn btn-lg btn-block btn-primary") }}
+
+        </form>
+    </div>
+</body>
+{% endblock %}
